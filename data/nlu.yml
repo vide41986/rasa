@@ -1,0 +1,136 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - yeah
+    - yep
+    - sure
+    - absolutely
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - nope
+    - nah
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - what are you?
+    - who are you?
+
+- intent: ask_weather
+  examples: |
+    - what's the weather like?
+    - how's the weather?
+    - weather forecast
+    - tell me about the weather
+    - is it raining?
+    - weather in [New York](location)
+    - weather in [London](location)
+    - what's the weather in [Paris](location)?
+
+- intent: ask_time
+  examples: |
+    - what time is it?
+    - current time
+    - tell me the time
+    - what's the time?
+    - time please
+
+- intent: ask_help
+  examples: |
+    - help
+    - help me
+    - can you help me?
+    - what can you do?
+    - how can you help?
+    - assist me
+
+- intent: out_of_scope
+  examples: |
+    - I want to order food
+    - What's your favorite movie?
+    - Can you book a flight?
+    - Tell me a joke
+    - What's 2+2?
+    - Can you drive a car?

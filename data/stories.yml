@@ -1,0 +1,83 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: action_openai_response
+
+- story: say goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- story: weather inquiry
+  steps:
+  - intent: ask_weather
+  - action: action_get_weather
+
+- story: time inquiry
+  steps:
+  - intent: ask_time
+  - action: action_get_time
+
+- story: help request
+  steps:
+  - intent: ask_help
+  - action: utter_help
+
+- story: collect user name
+  steps:
+  - intent: greet
+  - action: user_name_form
+  - active_loop: user_name_form
+  - slot_was_set:
+    - requested_slot: user_name
+  - action: utter_ask_user_name
+  - intent: greet
+    entities:
+    - user_name: "John"
+  - slot_was_set:
+    - user_name: "John"
+  - action: user_name_form
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_greet
+
+- story: out of scope with openai fallback
+  steps:
+  - intent: out_of_scope
+  - action: action_openai_response
+
+- story: fallback with openai
+  steps:
+  - intent: nlu_fallback
+  - action: action_openai_response

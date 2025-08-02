@@ -1,0 +1,39 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Activate form
+  steps:
+  - intent: greet
+  - action: user_name_form
+  - active_loop: user_name_form
+
+- rule: Submit form
+  condition:
+  - active_loop: user_name_form
+  steps:
+  - action: user_name_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+
+- rule: Handle fallback with OpenAI
+  steps:
+  - intent: nlu_fallback
+  - action: action_openai_response
+
+- rule: Handle out of scope with OpenAI
+  steps:
+  - intent: out_of_scope
+  - action: action_openai_response
