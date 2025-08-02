@@ -22,7 +22,6 @@ stories:
 - story: sad path 2
   steps:
   - intent: greet
-  - action: utter_greet
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -70,7 +69,7 @@ stories:
   - action: user_name_form
   - active_loop: null
   - action: utter_submit
-  - action: utter_greet
+
 
 - story: out of scope with openai fallback
   steps:
