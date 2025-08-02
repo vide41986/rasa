@@ -5,14 +5,16 @@ stories:
 - story: happy path
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: user_name_form
+  - active_loop: user_name_form
   - intent: mood_great
   - action: utter_happy
 
 - story: sad path 1
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: user_name_form
+  - active_loop: user_name_form
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -22,6 +24,8 @@ stories:
 - story: sad path 2
   steps:
   - intent: greet
+  - action: user_name_form
+  - active_loop: user_name_form
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
