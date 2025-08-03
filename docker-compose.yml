@@ -47,10 +47,7 @@ services:
       - ./config.yml:/app/config.yml:ro
       - ./domain.yml:/app/domain.yml:ro
       - ./credentials.yml:/app/credentials.yml:ro
-      - type: bind
-        source: ./endpoints.yml
-        target: /app/endpoints.yml
-        read_only: true
+      - ./endpoints.yml:/app/endpoints.yml:ro  # Fixed: Changed to shorthand syntax
     depends_on:
       actions:
         condition: service_healthy
