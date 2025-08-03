@@ -1,11 +1,15 @@
 #!/bin/bash
+set -e
 
-# Start action server in background
-rasa run actions --port 5055 &
+cd /app
 
-# Wait a moment for action server to start
-sleep 30
+echo "Training Rasa model..."
+rasa train
 
-
-# Start Rasa server
-rasa run --model models/20250803-043322-dichotomic-photon.tar.gz --enable-api --cors "*" --port 5005
+echo "Starting Rasa server..."
+exec rasa run \
+    --enable-api \
+    --cors "*" \
+    --port 5005 \
+    --debug \
+    --endpoints endpoints.yml

@@ -1,18 +1,47 @@
 version: '3.8'
 
 services:
-  rasa:
-    build: .
+  actions:
+    build:
+      context: .
+      dockerfile: Dockerfile.actions
     ports:
-      - "5005:5005"
       - "5055:5055"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
-      - ./data:/app/data
+      - ./actions:/app/actions
+      - ./models:/app/models
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5055/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
     restart: unless-stopped
+
+  rasa:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5005:5005"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./config.yml:/app/config.yml
+      - ./domain.yml:/app/domain.yml
+      - ./credentials.yml:/app/credentials.yml
+      - ./endpoints.yml:/app/endpoints.yml
+    depends_on:
+      actions:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5005/status"]
-      interval: 30s
-      timeout: 10s
+      interval: 15s
+      timeout: 5s
       retries: 3
+      start_period: 15s
+    restart: unless-stopped

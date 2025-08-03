@@ -1,7 +1,2 @@
 action_endpoint:
-  url: "http://localhost:5055/webhook"
-
-models:
-  url: "http://localhost:5005/models"
-  token: ""
-  wait_time_between_pulls: 10
+  url: "http://actions:5055/webhook"

@@ -1,0 +1,31 @@
+FROM python:3.9-slim
+
+# Create a non-root user
+RUN useradd -m -u 1000 rasa
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    g++ \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy only the necessary files and set permissions
+COPY --chown=rasa:rasa actions /app/actions
+COPY --chown=rasa:rasa endpoints.yml /app/endpoints.yml
+
+# Set proper permissions
+RUN chown -R rasa:rasa /app
+
+# Switch to non-root user
+USER rasa
+
+# Command to run the action server
+CMD ["rasa", "run", "actions", "--port", "5055"]
