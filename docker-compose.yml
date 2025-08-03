@@ -6,12 +6,15 @@ services:
       context: .
       dockerfile: Dockerfile.actions
     ports:
-      - "5055:5055"
+      - "0:5055"  # This will use a random available port
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PYTHONUNBUFFERED=1
+      - RASA_ENV=${RASA_ENV:-production}
+      - PORT=5055
     volumes:
-      - ./actions:/app/actions
-      - ./models:/app/models
+      - ./actions:/app/actions:ro
+      - ./models:/app/models:cached
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5055/health"]
       interval: 15s
@@ -19,6 +22,12 @@ services:
       retries: 3
       start_period: 15s
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
 
   rasa:
     build: 
@@ -28,9 +37,13 @@ services:
       - "5005:5005"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PYTHONUNBUFFERED=1
+      - RASA_ENV=${RASA_ENV:-production}
+      - RASA_MODEL_SERVER=${RASA_MODEL_SERVER:-}
+      - RASA_TELEMETRY_ENABLED=false
     volumes:
       - ./data:/app/data:ro
-      - ./models:/app/models
+      - ./models:/app/models:cached
       - ./config.yml:/app/config.yml:ro
       - ./domain.yml:/app/domain.yml:ro
       - ./credentials.yml:/app/credentials.yml:ro

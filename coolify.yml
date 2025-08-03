@@ -1,0 +1,36 @@
+app:
+  name: rasa-chatbot
+  services:
+    rasa:
+      port: 5005
+      healthcheck:
+        path: /status
+        port: 5005
+      environment:
+        - RASA_ENV=production
+        - PYTHONUNBUFFERED=1
+        - RASA_TELEMETRY_ENABLED=false
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+
+    actions:
+      port: 5055
+      healthcheck:
+        path: /health
+        port: 5055
+      environment:
+        - RASA_ENV=production
+        - PYTHONUNBUFFERED=1
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+
+  environment:
+    - name: OPENAI_API_KEY
+      required: true
+      secret: true
