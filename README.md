@@ -47,12 +47,39 @@ curl -X POST http://localhost:5005/webhooks/rest/webhook \
 
 ## Deployment on Coolify
 
-1. Create a new project in Coolify
-2. Connect your Git repository
-3. Set the following environment variables:
-   - `OPENAI_API_KEY`: Your OpenAI API key
+1. Log in to your Coolify dashboard
 
-4. Coolify will automatically build and deploy using the provided Dockerfile
+2. Create New Resource:
+   - Click "Create New Resource"
+   - Select "Application"
+   - Choose "Docker Compose"
+
+3. Connect Repository:
+   - Select your GitHub repository
+   - Choose the main branch
+   - Click "Next"
+
+4. Configure Environment Variables:
+   Required:
+   - `OPENAI_API_KEY`: Your OpenAI API key
+   Optional:
+   - `RASA_CORS_ORIGINS`: "*" (or your specific domain)
+   - `RASA_DEBUG`: "true" (for debugging)
+
+5. Build and Deploy:
+   - Click "Deploy"
+   - Wait for the build process to complete
+   - Both Rasa and Actions servers will be deployed
+
+6. Verify Deployment:
+   - Check the Coolify logs for any issues
+   - Test the bot using the provided endpoints
+   - Rasa API will be available at: `https://your-coolify-domain/`
+   - Actions server will be available at: `https://your-coolify-domain:5055/`
+
+7. Health Checks:
+   - Rasa server: `GET /status`
+   - Actions server: `GET /health`
 
 ## API Endpoints
 
