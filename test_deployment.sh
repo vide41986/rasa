@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Replace this with your Coolify domain
-DOMAIN="YOUR_COOLIFY_DOMAIN"
+DOMAIN="your-app.your-coolify-domain.com"  # Replace with your actual Coolify domain
 
 echo "Testing Rasa Deployment..."
 

@@ -1,2 +1,11 @@
 action_endpoint:
   url: "http://actions:5055/webhook"
+
+# Additional endpoints can be added here
+# tracker_store:
+#   type: sql
+#   url: ...
+
+# event_broker:
+#   type: pika
+#   url: ...
