@@ -3,12 +3,28 @@ import logging
 import os
 import requests
 from datetime import datetime
+import pytz
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.types import DomainDict
 import openai
+
+class ActionGetTime(Action):
+    def name(self) -> Text:
+        return "action_get_time"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        # Get current time
+        current_time = datetime.now().strftime("%I:%M %p")
+        
+        dispatcher.utter_message(text=f"The current time is {current_time}")
+        
+        return []
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

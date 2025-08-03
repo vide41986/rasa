@@ -35,9 +35,20 @@ forms:
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-  - text: "Hello! Nice to meet you!"
-  - text: "Hi there! How can I help you today?"
+  - text: "Hi! What's your name?"
+  - text: "Hello! I'd love to know your name."
+  - text: "Hey there! Could you tell me your name?"
+
+  utter_ask_name:
+  - text: "What's your name?"
+  - text: "Could you tell me your name?"
+
+  utter_greet_with_name:
+  - text: "Hi {user_name}! Nice to meet you!"
+  - text: "Hello {user_name}! How can I help you today?"
+
+  utter_time:
+  - text: "The current time is {time}"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"

@@ -2,13 +2,19 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+- story: greet and ask name
   steps:
   - intent: greet
+  - action: utter_ask_name
   - action: user_name_form
   - active_loop: user_name_form
-  - intent: mood_great
-  - action: utter_happy
+  - active_loop: null
+  - action: utter_greet_with_name
+
+- story: ask time
+  steps:
+  - intent: ask_time
+  - action: action_get_time
 
 - story: sad path 1
   steps:

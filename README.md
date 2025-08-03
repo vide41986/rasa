@@ -141,3 +141,76 @@ For issues and questions:
 ## License
 
 This project is open source and available under the MIT License.
+
+------------------------------------------
+
+docker-compose down -v && docker-compose up --build
+
+docker-compose up --build
+
+Manual Training Let's first look at your training data files and add more examples. Here's how to train manually:
+
+-> docker exec -it rasa-rasa-1 rasa train
+
+lso, there's an API endpoint for training if you want to trigger it programmatically:
+-> curl -X POST http://localhost:5005/model/train
+
+
+
+docker ps
+docker exec -it rasa-rasa-1 rasa shell
+chmod +x chat.sh
+./chat.sh
+
+----------------------------------------------------------------I'll guide you through the complete flow step by step:
+
+First Step: Start Fresh
+This command:
+docker-compose down -v
+docker-compose up --build
+
+Verify Services are Running
+docker ps
+Train the Model
+docker exec -it rasa-rasa-1 rasa train
+Make Chat Script Executable
+Make Chat Script Executable
+
+Start Chatting
+./chat.sh
+
+1.build
+docker-compose up --build
+
+docker ps
+
+Shows all running Docker containers
+This helps you verify that both the Rasa main container and the actions server are running
+You should see two containers: rasa-rasa-1 and rasa-actions-1
+docker exec -it rasa-rasa-1 rasa shell
+
+This command tries to open an interactive Rasa shell inside the running Rasa container
+-it means interactive mode
+rasa-rasa-1 is the name of your main Rasa container
+rasa shell starts the interactive chat interface
+However, this might fail because the Rasa server is already running on port 5005
+chmod +x chat.sh
+
+Makes the chat.sh script executable
+This is necessary before you can run the script
+The script was created to provide an easy way to chat with the bot
+chat.sh
+
+Runs the chat script we created
+This script provides a simple interface to talk to your bot
+It uses curl commands to send messages to the Rasa API
+Makes it easier to test your bot without writing curl commands manually
+The chat.sh script contains:
+
+Alternative ways to interact with your bot:
+
+Using curl directly:
+Using the REST API endpoint:
+Send POST requests to http://localhost:5005/webhooks/rest/webhook
+Include your message in JSON format
+Would you like me to show you how to use any of these methods in more detail?

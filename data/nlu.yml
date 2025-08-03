@@ -16,6 +16,19 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - good
+    - vinay hi
+    - hi vinay
+
+- intent: ask_time
+  examples: |
+    - what time is it
+    - what's the time
+    - tell me the time
+    - current time
+    - whats time now
+    - time please
+    - can you tell me the time
 
 - intent: goodbye
   examples: |
