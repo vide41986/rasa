@@ -19,7 +19,7 @@ pipeline:
 - name: DIETClassifier
   epochs: 100
   constrain_similarities: true
-  model_confidence: true
+  model_confidence: softmax 
   entity_recognition: true
   use_masked_language_model: true
   tensorboard_log_directory: ./logs
