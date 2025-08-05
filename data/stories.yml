@@ -2,25 +2,25 @@ version: "3.1"
 
 stories:
 
-- story: greet and ask name
+- story: happy path
   steps:
   - intent: greet
-  - action: utter_ask_name
   - action: user_name_form
   - active_loop: user_name_form
-  - active_loop: null
-  - action: utter_greet_with_name
-
-- story: ask time
-  steps:
-  - intent: ask_time
-  - action: action_get_time
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - intent: mood_great
+  - action: utter_happy
 
 - story: sad path 1
   steps:
   - intent: greet
   - action: user_name_form
   - active_loop: user_name_form
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -32,21 +32,14 @@ stories:
   - intent: greet
   - action: user_name_form
   - active_loop: user_name_form
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
   - intent: deny
   - action: action_openai_response
-
-- story: say goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
-
-- story: bot challenge
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
 
 - story: weather inquiry
   steps:
@@ -62,24 +55,6 @@ stories:
   steps:
   - intent: ask_help
   - action: utter_help
-
-- story: collect user name
-  steps:
-  - intent: greet
-  - action: user_name_form
-  - active_loop: user_name_form
-  - slot_was_set:
-    - requested_slot: user_name
-  - action: utter_ask_user_name
-  - intent: greet
-    entities:
-    - user_name: "John"
-  - slot_was_set:
-    - user_name: "John"
-  - action: user_name_form
-  - active_loop: null
-  - action: utter_submit
-
 
 - story: out of scope with openai fallback
   steps:

@@ -34,22 +34,6 @@ forms:
     - user_name
 
 responses:
-  utter_greet:
-  - text: "Hi! What's your name?"
-  - text: "Hello! I'd love to know your name."
-  - text: "Hey there! Could you tell me your name?"
-
-  utter_ask_name:
-  - text: "What's your name?"
-  - text: "Could you tell me your name?"
-
-  utter_greet_with_name:
-  - text: "Hi {user_name}! Nice to meet you!"
-  - text: "Hello {user_name}! How can I help you today?"
-
-  utter_time:
-  - text: "The current time is {time}"
-
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
@@ -59,6 +43,7 @@ responses:
 
   utter_happy:
   - text: "Great, carry on!"
+  - text: "Awesome! Glad to hear that!"
 
   utter_goodbye:
   - text: "Bye"
@@ -70,15 +55,15 @@ responses:
 
   utter_ask_user_name:
   - text: "What's your name?"
+  - text: "Could you tell me your name?"
 
   utter_submit:
-  - text: "Thanks {user_name}! Nice to meet you."
-
-  utter_default:
-  - text: "Sorry, I didn't understand that. Let me think about it..."
+  - text: "Thanks {user_name}! Nice to meet you. How are you feeling today?"
+  - text: "Hello {user_name}! Great to meet you! How can I help you?"
 
   utter_help:
   - text: "I can help you with various questions. You can ask me about the weather, time, or just have a casual conversation!"
+  - text: "I'm here to help! You can ask me about weather, current time, or chat about anything else."
 
 actions:
   - action_openai_response
