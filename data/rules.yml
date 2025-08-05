@@ -18,16 +18,6 @@ rules:
   - action: user_name_form
   - active_loop: user_name_form
 
-- rule: Submit form
-  condition:
-  - active_loop: user_name_form
-  steps:
-  - action: user_name_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_submit
-
 - rule: Handle fallback with OpenAI
   steps:
   - intent: nlu_fallback
