@@ -9,6 +9,7 @@ stories:
   - active_loop: user_name_form
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: utter_submit
   - intent: mood_great
   - action: utter_happy
@@ -20,6 +21,7 @@ stories:
   - active_loop: user_name_form
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: utter_submit
   - intent: mood_unhappy
   - action: utter_cheer_up
@@ -34,6 +36,7 @@ stories:
   - active_loop: user_name_form
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: utter_submit
   - intent: mood_unhappy
   - action: utter_cheer_up
