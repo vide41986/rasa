@@ -8,6 +8,10 @@ stories:
   - action: user_name_form
   - active_loop: user_name_form
   - slot_was_set:
+    - requested_slot: user_name
+  - slot_was_set:
+    - user_name: "John"
+  - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit
@@ -19,6 +23,10 @@ stories:
   - intent: greet
   - action: user_name_form
   - active_loop: user_name_form
+  - slot_was_set:
+    - requested_slot: user_name
+  - slot_was_set:
+    - user_name: "Jane"
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -34,6 +42,10 @@ stories:
   - intent: greet
   - action: user_name_form
   - active_loop: user_name_form
+  - slot_was_set:
+    - requested_slot: user_name
+  - slot_was_set:
+    - user_name: "Alex"
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
